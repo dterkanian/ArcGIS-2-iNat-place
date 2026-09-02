@@ -76,7 +76,7 @@ FEATURE_SERVICE_URL = (
     "Massachusetts_Property_Tax_Parcels/FeatureServer/0"
 )
 
-from places.TownForest import WHERE_CLAUSE,OUTPUT_KML,PLACE_NAME
+from places.Manhan import WHERE_CLAUSE,OUTPUT_KML,PLACE_NAME
 
 OUTPUT_KML = f'kml-files/{OUTPUT_KML}'
 
