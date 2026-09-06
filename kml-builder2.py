@@ -40,7 +40,9 @@ IMPORTANT:
 
 from __future__ import annotations
 
-import argparse
+import sys
+import importlib
+
 import math
 import os
 from pathlib import Path
@@ -76,7 +78,11 @@ FEATURE_SERVICE_URL = (
     "Massachusetts_Property_Tax_Parcels/FeatureServer/0"
 )
 
-from places.Manhan import WHERE_CLAUSE,OUTPUT_KML,PLACE_NAME
+PLACE = importlib.import_module('places.'+sys.argv[1])
+
+WHERE_CLAUSE = PLACE.WHERE_CLAUSE
+OUTPUT_KML = PLACE.OUTPUT_KML
+PLACE_NAME = PLACE.PLACE_NAME
 
 OUTPUT_KML = f'kml-files/{OUTPUT_KML}'
 

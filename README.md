@@ -21,12 +21,19 @@ You will need to confirm the input and output ```CRS``` encoding used for geogra
 
 Finally, you will need to define which ArcGIS records you want returned, how you want them labeled, and what you want the output file to be called. An example input and output file for the Manhan mixed-used rail trail in Easthampton, MA are provided.
 
-The ```WHERE_CLAUSE``` variable defines an SQL-like clause for filtering rows. You will need to be familiar with your database contents to decide how to usefully compose this clause. Keep in mind, ArcGIS's SQL is case sensitive for both literals and field names.
+The ```WHERE_CLAUSE``` variable defines an SQL clause for filtering rows. You will need to be familiar with your database contents to decide how to usefully compose this clause. Keep in mind, ArcGIS's SQL is case sensitive for both literals and field names.
 
-Each ```place``` I define in a separate ```.py``` file to import, which means you need to adjust the import statement to match the place file you wish to use:
+Each ```place``` I define in a separate ```.py``` file to import, which must expose the following constants:
 
-```python
-from places.TownForest import WHERE_CLAUSE,OUTPUT_KML,PLACE_NAME
+  * ```WHERE_CLAUSE``` - the SQL clause for filtering data
+  * ```OUTPUT_KML``` - the output KML file name
+  * ```PLACE_NAME``` - the placename to embed in the KML file
+
+The ```place``` is then specified on the command line:
+
+```sh
+python kml-builder2.py MineralHills
 ```
 
-  > This is clunky, I'll parameterize it later
+...which will load ```./places/MineralHills.py``` and look for those 3 variables.
+
