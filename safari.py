@@ -58,33 +58,3 @@ if response.status_code == 200:
             json.dump(taxa_list, file, indent=4)
 else:
     print(f"{response.status_code} - {response.text}")
-
-# migrate to JS frontend
-
-safari_id_list = []
-
-native_taxa_ids = [k for k,v in taxa.items() if v['native']]
-if native_taxa_ids:
-    for i in range(3):
-        safari_id_list.append(native_taxa_ids.pop(random.randrange(len(native_taxa_ids))))
-
-introduced_taxa_ids = [k for k,v in taxa.items() if not v['native']]
-if introduced_taxa_ids:
-    for i in range(1):
-        safari_id_list.append(introduced_taxa_ids.pop(random.randrange(len(introduced_taxa_ids))))
-
-safari_list = [v for k,v in taxa.items() if k in safari_id_list]
-
-for s in safari_list:
-    print('#'*80)
-    print(f"# {s['name']} ({s['preferred_common_name']})")
-    print('#'*80)
-    print()
-    print(f"\t* https://inaturalist.org/taxa/{s['taxon_id']}")
-    print(f"\t* {s['wikipedia_url']}")
-    print()
-    for p in s['photos']:
-        print(f"\t* {p['url']}")
-        print(f"\t  {p['attribution']}")
-    print()
-    print()
