@@ -53,8 +53,9 @@ if response.status_code == 200:
                     'url': p['url'],
                 })
     if taxa:
+        taxa_list = [v for k,v in taxa.items()]
         with open("taxa.json", "w", encoding="utf-8") as file:
-            json.dump(taxa, file, indent=4)
+            json.dump(taxa_list, file, indent=4)
 else:
     print(f"{response.status_code} - {response.text}")
 
