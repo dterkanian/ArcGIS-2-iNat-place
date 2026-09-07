@@ -6,6 +6,7 @@ Include 3 native plants (things to be excited about) and an introduced plant (th
 
 import datetime
 import json
+import random
 import requests
 
 month_number = datetime.date.today().month
@@ -57,7 +58,6 @@ if response.status_code == 200:
 else:
     print(f"{response.status_code} - {response.text}")
 
-import random
 # migrate to JS frontend
 
 safari_id_list = []
