@@ -5,6 +5,7 @@ Include 3 native plants (things to be excited about) and an introduced plant (th
 '''
 
 import datetime
+import json
 import requests
 
 month_number = datetime.date.today().month
@@ -50,15 +51,14 @@ if response.status_code == 200:
                     'attribution': p['attribution'],
                     'url': p['url'],
                 })
-    # if taxa:
-    #     for k,t in taxa.items():
-    #         print(f"{t['name']} ({t['preferred_common_name']}) [{t['native']}] x{t['count']} w/ {len(t['photos'])} pics")
-        # store taxa in db
+    if taxa:
+        with open("taxa.json", "w", encoding="utf-8") as file:
+            json.dump(taxa, file, indent=4)
 else:
     print(f"{response.status_code} - {response.text}")
 
-# pull random taxa from db
 import random
+# migrate to JS frontend
 
 safari_id_list = []
 
